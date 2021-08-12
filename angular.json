@@ -123,6 +123,10 @@
               "devServerTarget": "cs50-final:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

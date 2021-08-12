@@ -12,6 +12,14 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatList, MatListModule} from '@angular/material/list';
+import { PostComponent } from './components/home/post/post.component';
+import { MatCardModule } from '@angular/material/card';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -20,7 +28,8 @@ import {MatList, MatListModule} from '@angular/material/list';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +40,11 @@ import {MatList, MatListModule} from '@angular/material/list';
     MatSidenavModule,
     MatButtonModule,
     MatListModule,
+    MatCardModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

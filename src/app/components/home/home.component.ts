@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Post } from './post/post';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  posts = this.store.collection('posts').valueChanges({ idField: 'id' });
+
+  constructor(
+    private store: AngularFirestore
+  ) { }
 
   ngOnInit(): void {
   }

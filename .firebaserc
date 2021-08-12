@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "cs50test": {
+      "hosting": {
+        "cs50-final": [
+          "cs50test"
+        ]
+      }
+    }
+  }
+}
