@@ -1,1 +1,18 @@
-<p>login works!</p>
+<h2>New Account</h2>
+
+
+<label>New Email</label>
+<input [(ngModel)]="newEmail" name="newEmail" type="email">
+<label>Password</label>
+<input [(ngModel)]="newPassword" name="newPassword" type="password">
+<button mat-button (click)="createAccount(newEmail, newPassword)">Register Account</button>
+
+<h2>Login</h2>
+<label>Email</label>
+<input [(ngModel)]="email" name="email" type="email">
+<label>Password</label>
+<input [(ngModel)]="password" name="password" type="password">
+<button mat-button (click)="login(email, password)">Log In</button>
+
+<h3>Log out</h3>
+<button mat-button (click)="logout()">Log out.</button>

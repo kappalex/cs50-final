@@ -19,6 +19,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import {firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
 
 
 
@@ -44,9 +46,11 @@ import { FormsModule } from '@angular/forms';
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
     MatInputModule,
-    FormsModule
+    FormsModule,
+    AngularFireAuthModule,
+    FirebaseUIModule
   ],
-  providers: [],
+  providers: [AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

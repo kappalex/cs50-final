@@ -5,11 +5,12 @@
       <button routerLink="/home" mat-list-item>
         Home
       </button>
-      <button routerLink="/create-post" mat-list-item>
+      <button routerLink="/create-post" [disabled]="!signedIn" mat-list-item>
         Create Post
       </button>
       <button routerLink="/login" mat-list-item>
         Login </button>
+     
     </mat-action-list>
     
   </mat-sidenav>
