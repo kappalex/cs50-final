@@ -12,6 +12,8 @@ This required me to also familiarize myself with observables, observers, subscri
 
 3. Authentication and Storage
 Having heard of Firebase before I wanted to try that out as well. I did struggle here and spent significant time googling around to get things working but by the end of it I had both implemented and working. Within Firebase I have two collections (Users and Posts) as well as the Authentication table. Users supplements the authentication table with a username such that this too can be displayed in posts.
+Especially difficult was linking the Firebase Authentication table with my users table. I'm fairly confident with more experience there would've been a better way to go about this but the async function seems to be working.
+Moving on from here I wanted the user object in my create-post component to write the author into the posts database. Getting this through a direct service call didn't seem to work since the server took too long to respond and an empty observable or something similar was returned. I fixed this by just getting the user's details directly on AuthStateChange in the authservice so it would be readily available when create-post asks for it but surely there is a smarter way to do this too. Anyway, it works. Very happy with that.
 
 4. Hosting
 Finally, since this is also a key function of firebase I wanted to try and host my web app through firebase as well. After a couple of attempts at configuring it, that too worked out so that I could first build a production version of the app and then deploy that to cs50test.web.app. Going through the full cycle from inception to deployment was really important to me.
