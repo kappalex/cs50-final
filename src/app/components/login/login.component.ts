@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   newPassword
   email
   password
+  signedIn
+  authSub
 
 
   constructor(
@@ -34,7 +36,11 @@ export class LoginComponent implements OnInit {
     this.authService.logout();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authSub = this.authService.getAuthState().subscribe((res) => {
+      this.signedIn = res;
+    })
+  }
 
 
 

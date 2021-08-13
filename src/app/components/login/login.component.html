@@ -1,18 +1,53 @@
-<h2>New Account</h2>
+<mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-title>Login</mat-card-title>
+            <mat-card-content>
+                <mat-form-field class="w-100">
+                    <mat-label>
+                        Email
+                    </mat-label>
+                    <input matInput [(ngModel)]="email" name="email" type="email">
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-label>
+                        Password
+                    </mat-label>
+                    <input matInput [(ngModel)]="password" name="password" type="password">
+
+                </mat-form-field>
+                <p *ngIf="signedIn">You're logged in!</p>
+
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="login(email, password)">Log In</button>
+                </mat-card-actions>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-title>Create New Account</mat-card-title>
+            <mat-card-content>
+                <mat-form-field class="w-100">
+                    <mat-label >
+                        New Email
+                    </mat-label>
+                    <input matInput [(ngModel)]="newEmail" name="newEmail" type="email">
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-label>
+                        Password
+                    </mat-label>
+                    <input matInput [(ngModel)]="newPassword" name="newPassword" type="password">
+
+                </mat-form-field>
 
 
-<label>New Email</label>
-<input [(ngModel)]="newEmail" name="newEmail" type="email">
-<label>Password</label>
-<input [(ngModel)]="newPassword" name="newPassword" type="password">
-<button mat-button (click)="createAccount(newEmail, newPassword)">Register Account</button>
-
-<h2>Login</h2>
-<label>Email</label>
-<input [(ngModel)]="email" name="email" type="email">
-<label>Password</label>
-<input [(ngModel)]="password" name="password" type="password">
-<button mat-button (click)="login(email, password)">Log In</button>
-
-<h3>Log out</h3>
-<button mat-button (click)="logout()">Log out.</button>
+                <mat-card-actions>
+                    <button mat-raised-button color="secondary" (click)="createAccount(newEmail, newPassword)">Register
+                        Account</button>
+                </mat-card-actions>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

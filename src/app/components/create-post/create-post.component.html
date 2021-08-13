@@ -1,13 +1,23 @@
-<h1>Create New Blog Entry</h1>
+<div class="blog-container">
+  <mat-card>
+    <mat-card-title>Create New Blog Entry</mat-card-title>
+    <mat-card-content>
 
-
-    <mat-form-field class="example-full-width" appearance="fill">
+    </mat-card-content>
+    <mat-form-field class="w-100">
       <mat-label>Post Title</mat-label>
-      <input [(ngModel)]="title" matInput placeholder="Ex. Pizza" value="Sushi">
+      <input [(ngModel)]="title" matInput>
     </mat-form-field>
-  
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Post Text</mat-label>
-      <textarea [(ngModel)]="body" matInput placeholder="What do you want to share today?"></textarea>
+
+    <mat-form-field class="w-100">
+      <mat-label>Post Body</mat-label>
+      <textarea [(ngModel)]="body" matInput></textarea>
     </mat-form-field>
-    <button mat-button (click)="submit()" >Submit</button>
+
+
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

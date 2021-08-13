@@ -9,7 +9,7 @@ import { LoginGuardGuard } from './login-guard.guard';
 // const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['home']);
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'create-post', component: CreatePostComponent, canActivate: [LoginGuardGuard] },
 ];

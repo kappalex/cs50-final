@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 //import { auth } from 'firebaseui';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators'
-import { User } from './user.model';
 import firebase from "firebase/app";
 import {BehaviorSubject} from 'rxjs';
 import "firebase/auth";
@@ -14,8 +10,9 @@ import "firebase/auth";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService {ng 
   user = null;
+  user_id;
   errorCode
   errorMessage
   
@@ -26,6 +23,20 @@ export class AuthService {
     
   ) { 
      this.signedIn$ = new BehaviorSubject<boolean>(false);
+
+     firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+         this.user_id = user.uid;
+         console.log(this.user_id)
+        // ...
+      } else {
+        // User is signed out
+        // ...
+        console.log("User is signed out.")
+      }
+    });
    }
 
   switchAuthState(){
@@ -41,9 +52,11 @@ export class AuthService {
       .then((userCredential) => {
         // Signed in 
         this.user = userCredential.user;
+   
         // ...
         this.switchAuthState()
         console.log(this.user)
+        console.log("UID", this.user.uid)
       })
       .catch((error) => {
         this.errorCode = error.code;
@@ -61,6 +74,8 @@ export class AuthService {
         // ...
         this.switchAuthState();
         console.log("Great success!", this.user)
+        console.log("User ID", this.user_id)
+
       })
       .catch((error) => {
         this.errorCode = error.code;

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { timeStamp } from 'console';
-import { Post } from '../home/post/post';
 
 @Component({
   selector: 'app-create-post',

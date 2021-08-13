@@ -19,6 +19,10 @@ export class AppComponent {
     private authService: AuthService
   ){}
 
+  logout(){
+    this.authService.logout();
+  }
+
   ngOnInit(){
     this.authSub = this.authService.getAuthState().subscribe((res) => {
       this.signedIn = res;

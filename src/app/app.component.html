@@ -1,25 +1,28 @@
 <mat-sidenav-container>
 
   <mat-sidenav #sidenav mode="side">
-    <mat-action-list>
-      <button routerLink="/home" mat-list-item>
+    <mat-nav-list>
+      <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+        true}" mat-list-item>
         Home
-      </button>
-      <button routerLink="/create-post" [disabled]="!signedIn" mat-list-item>
+      </a>
+      <a routerLink="/create-post" [disabled]="!signedIn" mat-list-item>
         Create Post
-      </button>
-      <button routerLink="/login" mat-list-item>
-        Login </button>
+      </a>
+      <a routerLink="/login" mat-list-item>
+        Login </a>
+       
      
-    </mat-action-list>
-    
+    </mat-nav-list>
+     <button (click)="logout()" mat-stroked-button style="margin: 10px;">
+          Logout </button>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button mat-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <mat-icon>local_fire_department</mat-icon>
+      <mat-icon >face</mat-icon>
       <span> AK Blog</span>
     </mat-toolbar>
     <router-outlet></router-outlet>
