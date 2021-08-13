@@ -1,1 +1,24 @@
-<p>edit-post works!</p>
+<div class="blog-container">
+    <mat-card *ngIf="post" >
+      <mat-card-title>Edit Post</mat-card-title>
+      <mat-card-content>
+  
+      </mat-card-content>
+      <mat-form-field class="w-100">
+        <mat-label>Post Title</mat-label>
+        <input [(ngModel)]="post.title" matInput>
+      </mat-form-field>
+  
+      <mat-form-field class="w-100">
+        <mat-label>Post Body</mat-label>
+        <textarea [(ngModel)]="post.body" matInput></textarea>
+      </mat-form-field>
+  
+  
+  
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="savePost()">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+     
+  </div>

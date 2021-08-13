@@ -22,6 +22,7 @@ export class AuthService {
   currentUserQuery
   currentUser = null;
   postToEdit
+  postToEditTime
 
   private signedIn$: BehaviorSubject<boolean>;
 
@@ -58,12 +59,17 @@ export class AuthService {
     return this.user_id;
   }
 
-  setEditPost(post_id){
-    this.postToEdit = post_id;
+  setEditPost(post_id, timestamp){
+    this.postToEdit = post_id
+    this.postToEditTime = timestamp
   }
 
   getEditPost(){
     return this.postToEdit;
+  }
+
+  getEditPostTime(){
+    return this.postToEditTime;
   }
 
   getCurrentUserData() {
@@ -74,7 +80,7 @@ export class AuthService {
   //this.currentUser = this.store.collection('users', ref => ref.where('uid', '==', this.user_id)).get()
     //this.currentUser =  this.store.collection('users').ref.where('uid', '==', this.user_id).get()
     //console.log(this.currentUser)
-     this.store.collection('users').ref.where('uid', '==', 'sd4d7j5kaGfYoSkiGrObLlRko4m2').get()
+     this.store.collection('users').ref.where('uid', '==', this.user_id).get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
@@ -90,6 +96,10 @@ export class AuthService {
       // ..
       console.log(this.errorCode, this.errorMessage)
   });
+  }
+
+  getTime(){
+    return firebase.firestore.FieldValue.serverTimestamp();
   }
 
   async createAccount(newEmail, newPassword, username) {

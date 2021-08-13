@@ -10,7 +10,7 @@ import { Post } from './post/post';
 })
 export class HomeComponent implements OnInit {
 
-  posts = this.store.collection('posts').valueChanges({ idField: 'id' });
+  posts = this.store.collection('posts', ref => ref.orderBy("timestamp", "desc")).valueChanges({ idField: 'id' });
 
   constructor(
     private store: AngularFirestore

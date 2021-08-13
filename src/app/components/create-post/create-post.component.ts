@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class CreatePostComponent implements OnInit {
   constructor(
     private store: AngularFirestore,
     private authService: AuthService,
-  ) { }
+    private router: Router,
+  ) {
+   }
   title
   body
   currentUser
@@ -22,7 +25,8 @@ export class CreatePostComponent implements OnInit {
     this.store.collection('posts').add({
       title: this.title,
       body: this.body,
-      creator: this.currentUser.username
+      creator: this.currentUser.username,
+      timestamp: this.authService.getTime()
     })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
@@ -30,7 +34,7 @@ export class CreatePostComponent implements OnInit {
       .catch((error) => {
         console.error("Error adding document: ", error);
       });
-
+      this.router.navigateByUrl('/');
   }
 
   ngOnInit(): void {

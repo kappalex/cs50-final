@@ -3,4 +3,5 @@ export interface Post {
     title: string;
     body: string;
     creator: string;
+    timestamp: string;
 }

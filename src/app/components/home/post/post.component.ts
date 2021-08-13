@@ -26,9 +26,9 @@ export class PostComponent implements OnInit {
     })
   }
 
-  editPost(post_id){
+  editPost(post_id, timestamp){
     console.log("Edit me please.")
-    this.authService.setEditPost(post_id);
+    this.authService.setEditPost(post_id, timestamp);
     this.router.navigateByUrl('edit-post');
   }
 
