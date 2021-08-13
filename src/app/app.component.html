@@ -6,7 +6,7 @@
         true}" mat-list-item>
         Home
       </a>
-      <a routerLink="/create-post" [disabled]="!signedIn" mat-list-item>
+      <a routerLink="/create-post" *ngIf="signedIn" mat-list-item>
         Create Post
       </a>
       <a routerLink="/login" mat-list-item>

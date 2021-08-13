@@ -30,6 +30,12 @@
             <mat-card-content>
                 <mat-form-field class="w-100">
                     <mat-label >
+                        Username
+                    </mat-label>
+                    <input matInput [(ngModel)]="username" name="username" type="text">
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                    <mat-label >
                         New Email
                     </mat-label>
                     <input matInput [(ngModel)]="newEmail" name="newEmail" type="email">
@@ -44,7 +50,7 @@
 
 
                 <mat-card-actions>
-                    <button mat-raised-button color="secondary" (click)="createAccount(newEmail, newPassword)">Register
+                    <button mat-raised-button color="secondary" (click)="createAccount(newEmail, newPassword, username)">Register
                         Account</button>
                 </mat-card-actions>
             </mat-card-content>

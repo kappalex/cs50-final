@@ -18,14 +18,15 @@ export class LoginComponent implements OnInit {
   password
   signedIn
   authSub
+  username
 
 
   constructor(
     private authService: AuthService
   ) { }
 
-  createAccount(newEmail, newPassword){
-    this.authService.createAccount(newEmail, newPassword);
+  createAccount(newEmail, newPassword, username){
+    this.authService.createAccount(newEmail, newPassword, username);
   }
 
   login(email, password){

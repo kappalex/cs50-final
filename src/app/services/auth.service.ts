@@ -6,21 +6,27 @@ import { Observable, of } from 'rxjs';
 import firebase from "firebase/app";
 import {BehaviorSubject} from 'rxjs';
 import "firebase/auth";
+import { AngularFirestore } from '@angular/fire/firestore';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {ng 
+export class AuthService {
   user = null;
-  user_id;
+  user_id = null;
   errorCode
   errorMessage
-  
+  usersRef
+  currentUserQuery
+  currentUser = null;
+  postToEdit
+
   private signedIn$: BehaviorSubject<boolean>;
 
   constructor(
-    private afAuth: AngularFireAuth,
-    
+    private store: AngularFirestore,
   ) { 
      this.signedIn$ = new BehaviorSubject<boolean>(false);
 
@@ -30,6 +36,7 @@ export class AuthService {ng
         // https://firebase.google.com/docs/reference/js/firebase.User
          this.user_id = user.uid;
          console.log(this.user_id)
+         this.getCurrentUser();
         // ...
       } else {
         // User is signed out
@@ -47,7 +54,45 @@ export class AuthService {ng
     return this.signedIn$.asObservable();
   }
 
-  createAccount(newEmail, newPassword) {
+  getUserID() {
+    return this.user_id;
+  }
+
+  setEditPost(post_id){
+    this.postToEdit = post_id;
+  }
+
+  getEditPost(){
+    return this.postToEdit;
+  }
+
+  getCurrentUserData() {
+    return this.currentUser;
+  }
+
+  getCurrentUser(){
+  //this.currentUser = this.store.collection('users', ref => ref.where('uid', '==', this.user_id)).get()
+    //this.currentUser =  this.store.collection('users').ref.where('uid', '==', this.user_id).get()
+    //console.log(this.currentUser)
+     this.store.collection('users').ref.where('uid', '==', 'sd4d7j5kaGfYoSkiGrObLlRko4m2').get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        this.currentUser = doc.data() 
+        console.log(this.currentUser)
+        console.log(doc.id, " => ", doc.data()); 
+    })
+    })
+    .catch(error => {
+      // Catch errors
+      this.errorCode = error.code;
+      this.errorMessage = error.message;
+      // ..
+      console.log(this.errorCode, this.errorMessage)
+  });
+  }
+
+  async createAccount(newEmail, newPassword, username) {
     firebase.auth().createUserWithEmailAndPassword(newEmail, newPassword)
       .then((userCredential) => {
         // Signed in 
@@ -64,6 +109,17 @@ export class AuthService {ng
         // ..
         console.log(this.errorCode, this.errorMessage)
       });
+      await this.user_id != null
+      this.store.collection('users').add({
+        uid: this.user_id,
+        username: username
+      })
+        .then((docRef) => {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
   }
 
   login(email, password) {

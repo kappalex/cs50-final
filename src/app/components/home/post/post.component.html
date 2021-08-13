@@ -1,4 +1,10 @@
 <mat-card class="item" (dblclick)="edit.emit(post)">
-<h2>{{ post.title}}</h2>
-<p>{{post.body}}</p>
+<mat-card-title>{{ post.title}}</mat-card-title>
+<mat-card-content>
+    <p>{{post.body}}</p>
+    <p>Author: {{post.creator}}</p>
+</mat-card-content>
+<mat-card-actions *ngIf="signedIn">
+    <button mat-stroked-button (click)="editPost(post.id)">Edit</button>
+</mat-card-actions>
 </mat-card>

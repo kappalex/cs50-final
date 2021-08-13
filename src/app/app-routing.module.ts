@@ -5,6 +5,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { LoginComponent } from './components/login/login.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { LoginGuardGuard } from './login-guard.guard';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
 
 // const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['home']);
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'create-post', component: CreatePostComponent, canActivate: [LoginGuardGuard] },
+  { path: 'edit-post', component: EditPostComponent, canActivate: [LoginGuardGuard] },
 ];
 
 @NgModule({

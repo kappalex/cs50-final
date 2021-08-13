@@ -21,7 +21,8 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import {firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
-import { MatGridList, MatGridListModule } from '@angular/material/grid-list'
+import { MatGridList, MatGridListModule } from '@angular/material/grid-list';
+import { EditPostComponent } from './components/edit-post/edit-post.component'
 
 
 
@@ -33,6 +34,7 @@ import { MatGridList, MatGridListModule } from '@angular/material/grid-list'
     LoginComponent,
     CreatePostComponent,
     PostComponent,
+    EditPostComponent,
   ],
   imports: [
     BrowserModule,
